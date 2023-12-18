@@ -1,0 +1,11 @@
+.atm-manager__welcome {}
+.atm-manager__welcome button {
+    padding: 12px 20px;
+}
+
+.atm-manager__settings {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+}

@@ -1,0 +1,15 @@
+.atm-manager__settings {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 100px;
+}
+.atm-manager__settings.active.visible {
+
+}
+.atm-manager__settings .atm-manager__settings--background {
+
+}
+.atm-manager__settings.active .atm-manager__settings--background {
+
+}
