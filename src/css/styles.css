@@ -1,3 +1,17 @@
+:root {
+    --white: #CBCBCB;
+    --black: #242424;
+    --color-active: #43694e;
+    --color-first: #6ED28CFF;
+    --color-second: #7e9b8d;
+    --xs: 4px;
+    --sm: 8px;
+    --md: 12px;
+    --lg: 16px;
+    --xl: 20px;
+    --xxl: 24px;
+    --spacer-li: var(--md);
+}
 /** Basic styles from all pages project */
 * {
     margin: 0;
@@ -5,13 +19,115 @@
     outline: none;
     box-sizing: border-box;
 }
-.hidden {
-    display: none;
+html {
+    font-size: 16px;
 }
-.container {
-    margin: 0 auto;
-    max-width: 760px;
+body {
+    background-color: var(--white);
+    font-family: "Lucida Console", "DejaVu Sans Mono", Monaco, monospace;
+    font-size: 1rem;
 }
+#page {
+    position: relative;
+}
+header#header {
+    position: sticky;
+    top: 0;
+
+}
+main {
+    margin: 48px 12px;
+}
+footer#footer {
+
+}
+header#header,
+footer#footer {
+    padding: 32px 0;
+    background-color: var(--color-second);
+    color: var(--white);
+}
+
+
+a {
+    color: inherit;
+}
+
+.fields {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.input-group.input-group-line {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.input-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button,
+.button {
+    padding: 12px;
+    border: none;
+    border-radius: var(--md);
+    box-shadow: 0 4px 8px 0 var(--black);
+    color: var(--white);
+    cursor: pointer;
+}
+button,
+.button.fill {
+    background-color: var(--color-second);
+    transition: color, background-color, box-shadow, 180ms linear;
+}
+button:hover,
+.button.fill:hover {
+    background-color: var(--color-active);
+    color: var(--black);
+}
+button:active,
+.button.fill:active {
+    box-shadow: 0 0 2px 0 var(--black);
+}
+.button:not(.fill){
+    background-color: transparent;
+}
+
+.menu-wrapper {}
+.menu-wrapper ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 100%;
+    gap: 6px var(--spacer-li);
+}
+.menu-top {
+    height: 100%;
+}
+.menu-wrapper li {
+    color: var(--white);
+    transition: color, 180ms linear;
+}
+.menu-wrapper li.active,
+.menu-wrapper li:hover {
+    color: var(--color-active);
+}
+.menu-wrapper li:hover {
+    color: var(--color-active);
+}
+
 details {}
 details .details__inner {
     display: flex;
@@ -20,10 +136,41 @@ details .details__inner {
     padding: 24px 0 0;
     border: 1px solid gray;
 }
-.atm-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(60px, 1fr));
-    grid-template-rows: repeat(1, 1fr);
-    gap: 16px;
-    margin: 60px 0;
+
+/** GRID */
+.hidden {
+    display: none;
 }
+
+.container {
+    margin: 0 auto;
+    max-width: 1280px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(40px, 1fr));
+    grid-template-rows: repeat(1, 1fr);
+    gap: var(--xxl);
+}
+.col-1,
+.col-2,
+.col-3 {
+    grid-column: auto/span 1;
+}
+.col-4,
+.col-5,
+.col-6 {
+    grid-column: auto/span 2;
+}
+.col-7,
+.col-8,
+.col-9 {
+    grid-column: auto/span 3;
+}
+.col-10,
+.col-11,
+.col-12 {
+    grid-column: auto/span 4;
+
+}
+/** GRID */

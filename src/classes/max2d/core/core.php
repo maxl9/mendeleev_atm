@@ -47,4 +47,24 @@ class Core
         return preg_replace("/" . preg_replace("/\//", "\/", $_SERVER["DOCUMENT_ROOT"]) . "/", "" , $sPath) ?: "";
     }
 
+    public function readFileJson($sPath = ""): string
+    {
+        $sResult = json_encode("");
+        if(!empty($sPath) && file_exists($sPath)){
+            $sFileContent = file_get_contents($sPath);
+            $sResult = $sFileContent;
+        }
+
+        return $sResult;
+    }
+    public function writeFileJson($sPath = "", $sJson = ""): bool
+    {
+        if(empty($sJson) || empty($sPath)) return false;
+        try{
+            file_put_contents($sPath, $sJson);
+            return true;
+        }catch(\Exception $e){
+            return false;
+        }
+    }
 }

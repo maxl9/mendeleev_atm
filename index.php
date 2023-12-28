@@ -1,10 +1,19 @@
 <?php
 use Max2D\Core\Core,
-    Max2D\ATM\Manager;
+    Max2D\ATM\Manager,
+    Max2D\ATM\ATM;
 require_once __DIR__ . "/include.php";
-global $CORE;
+global $CORE, $ATM;
 $CORE = new Core();
+$ATM = new ATM();
+$ATMManager = new Manager();
 
+if(!empty($_REQUEST["IS_AJAX"]) && $_REQUEST["IS_AJAX"] === "Y") die();
+
+/**
+ * Для сброса конфигурации банкомата добавить параметры в адрес
+ * ?INSTANCE=ATM&ACTION=RESET&CODE=12344321&ID=#ID#
+ */
 ## OUTPUT HTML
 ?><!doctype html>
 <html lang="ru">
@@ -20,16 +29,34 @@ $CORE = new Core();
         <div id="page">
             <header id="header">
                 <div class="container">
-                    <h1>ATM</h1>
+                    <div class="grid">
+                        <div class="col-3">
+                            <h1>ATM</h1>
+                        </div>
+                        <div class="col-9">
+                            <div class="menu-wrapper menu-top">
+                                <ul>
+                                    <li><a href="admin/">Администрирование</a></li>
+                                    <li class="active"><span>Банкоматы</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </header>
             <main>
                 <div class="container">
-                    <?php $ATMManager = new Manager(); ?>
+                    <?php $ATMManager->includeTemplate(); ?>
                 </div>
             </main>
             <footer id="footer">
-                <div class="container"></div>
+                <div class="container">
+                    <div class="grid">
+                        <div class="col-12">
+                            <span>ATM &copy 2023</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="ui-sources hidden">
                     <?php $CORE->includeFiles(); // Подключаем все зарегистрированные файлы скриптов и стилей ?>
                 </div>
