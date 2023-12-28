@@ -1,0 +1,48 @@
+.atm-manager__settings {
+    z-index: 49;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+.atm-manager__settings:not(.active) {
+    display: none;
+    right: 0;
+}
+.atm-manager__settings .atm-manager__settings--background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, #102f01dd, #266ff5bb);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity, 340ms linear;
+    cursor: pointer;
+}
+.atm-manager__settings.visible .atm-manager__settings--background {
+    opacity: 1;
+}
+.atm-manager__settings .atm-manager__settings--body {
+    padding: 24px;
+    position: absolute;
+    height: 100%;
+    max-width: 564px;
+    width: 100%;
+    right: -100%;
+    display: flex;
+    flex-direction: column;
+    gap: 48px 0;
+    background-color: var(--white, #CBCBCB);
+    transition: right, 420ms ease-in-out;
+}
+.atm-manager__settings.visible .atm-manager__settings--body {
+    right: 0;
+}
+.atm-manager__settings--form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px 0;
+}

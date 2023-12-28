@@ -1,0 +1,84 @@
+.atm-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--xxl, 24px);
+}
+.atm-manager__welcome {}
+.atm-manager__welcome button {
+    padding: 12px 20px;
+}
+.atm-manager__welcome {
+    padding: var(--xxl, 24px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px 0;
+    border: 1px dashed var(--color-second, #507864);
+    border-radius: var(--lg, 16px);
+}
+
+/** ATM FORM LIST*/
+.atm-forms {
+    max-width: 100%;
+}
+.atm-forms__header {}
+.atm-forms__list {
+    padding: var(--lg, 16px);
+}
+.atm-forms__header,
+.atm-forms__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px 0;
+}
+.atm-forms__list .atm-form__wrapper {
+    padding: 16px;
+    background-color: #FFFFFF;
+    border-radius: var(--lg, 16px);
+    box-shadow: 0 0 4px 0 var(--black, #242424) inset;
+}
+.atm-forms__list .input-id {
+    border: none;
+    width: 76px;
+    max-width: 52px;
+    text-align: right;
+}
+.atm-forms__list input:disabled {
+    border: none;
+}
+/** VIEW */
+.atm-view {}
+.atm-view__header {
+    margin: 32px 0;
+}
+.atm-view__list {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(60px, 1fr));
+    grid-template-rows: repeat(1, 1fr);
+    gap: 16px;
+}
+.atm-view__list .atm__empty {
+    grid-area: auto/span 2;
+}
+.atm-view__list .atm-container + .atm__empty {
+    display: none;
+}
+@media (min-width: 668px) {
+    .atm-view__list {
+        grid-template-columns: repeat(2, minmax(60px, 1fr));
+    }
+    .atm-forms__list {
+        padding: var(--xxl, 24px);
+    }
+}
+
+@media (min-width: 776px) {
+    .atm-forms__list .atm-form__wrapper {
+        padding: 24px 16px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .atm-forms__list .atm-form__wrapper {
+        padding: 24px;
+    }
+}

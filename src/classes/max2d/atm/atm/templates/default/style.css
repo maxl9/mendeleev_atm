@@ -1,0 +1,146 @@
+.atm-container {
+    width: 100%;
+}
+.atm-container > input {
+    display: none;
+}
+.atm {
+    border: 1px solid #44444490;
+    aspect-ratio: 1 / 1;
+    background-image: url("images/atm.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.atm-header {
+    position: relative;
+    height: 10%;
+}
+.atm-header h3 {
+    position: absolute;
+    top: 230%;
+    left: 30%;
+}
+.atm__screen-wrapper {
+    position: relative;
+    height: 10%;
+}
+.atm__screen-wrapper .atm__screen {
+    position: absolute;
+    background-color: #cfdfe9;
+    background: linear-gradient(90deg, #aebdc7 0%, #8f999d 100%);
+    top: 250%;
+    left: 17.2%;
+    width: 42.2%;
+    min-height: 40px;
+    height: 280%;
+    transform: perspective(60vw) rotateX(4deg) skew(-1deg, 0deg);
+    box-shadow: 0 0 8px 2px var(--black) inset;
+}
+.atm__screen-wrapper .atm__screen:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 16px;
+    height: 10%;
+    max-height: 32px;
+    background: linear-gradient(-180deg, #333333AA 0%, transparent 100%);
+}
+
+.atm-form-wrapper {}
+.atm-form-wrapper,
+.atm-form-wrapper form {
+    height: 100%;
+}
+
+.atm-screen__layouts {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    padding: 5% 0 10% 0;
+}
+.atm-screen__layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 8px;
+}
+.atm-screen__layout:not(.active) {
+    display: none;
+}
+.fields-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 50%;
+}
+
+.prop-balance {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #c05511;
+    font-size: 11px;
+}
+.prop-balance:after {
+    content: attr(data-value);
+}
+form:not(.authorized) .prop-balance {
+    display: none;
+}
+
+.atm-screen__layout button,
+.atm-screen__layout .button.fill {
+    background-color: #7E9B8DFF;
+    transition: color, background-color, box-shadow, 180ms linear;
+}
+.atm-screen__layout button,
+.atm-screen__layout .button {
+    margin: 0 auto;
+    min-width: 30%;
+    font-size: 11px;
+    padding: 4px 6px;
+    border: none;
+    border-radius: var(--xs);
+    box-shadow: 0 2px 4px 0 var(--black);
+    color: var(--black);
+    user-select: none;
+    cursor: pointer;
+}
+.atm-screen__layout button:hover,
+.atm-screen__layout .button.fill:hover {
+    background-color: #43694EFF;
+    color: #FFFFFF;
+}
+.atm-screen__layout .fields-column button {
+    width: 100%;
+}
+.atm-screen__layout button[type="reset"] {
+    background-color: transparent;
+    box-shadow: none;
+    color: #43694EFF;
+    text-decoration: underline;
+}
+.atm-screen__layout input {
+    position: relative;
+    max-width: 90%;
+    margin: 0 auto 12px;
+    padding: 4px 6px;
+    border-radius: var(--xs, 4px);
+}
+.atm-screen__layout input.input-error {
+    border-color: #c05511;
+}
+.atm-screen__layout input.input-error:after {
+    content: attr(data-error-text);
+    position: absolute;
+    top: -16px;
+    left: 16px;
+    font-size: 10px;
+    color: #c05511;
+}
