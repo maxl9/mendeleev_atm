@@ -62,6 +62,39 @@
 .atm-view__list .atm-container + .atm__empty {
     display: none;
 }
+
+/** TRANSFER */
+.transfer-container {}
+.transfer-container ul {
+    list-style-type: none;
+    max-width: 400px;
+    margin: 0 auto;
+}
+.transfer-container li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.transfer-container li + li {
+    margin-top: 12px;
+}
+.transfer-container img {
+    width: auto;
+    max-width: 100px;
+    height: 100%;
+
+}
+.transfer-container [data-transfer-count]:after {
+    content: attr(data-transfer-count);
+}
+.transfer-container hr {
+    margin: 10px 0;
+}
+.transfer-container .transfer-total {}
+.transfer-container .transfer-total:after {
+    content: attr(data-transfer-type) attr(data-transfer-amount);
+}
+/** TRANSFER END; */
 @media (min-width: 668px) {
     .atm-view__list {
         grid-template-columns: repeat(2, minmax(60px, 1fr));

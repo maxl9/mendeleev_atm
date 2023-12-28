@@ -106,6 +106,25 @@ function atmAjax(form){
             if(typeof response.CONSOLE !== "undefined"){
                 console.log(response.CONSOLE);
             }
+            if(typeof response.POPUP !== "undefined"){
+                let popup = document.querySelector(".popup");
+                if(typeof response.POPUP.TRANSFER !== "undefined"){
+                    for(const nominal in response.POPUP.TRANSFER){
+                        let fields = document.querySelectorAll(`li[data-nominal="${nominal}"] [data-transfer-count]`);
+                        fields.forEach(function(element){
+                            element.setAttribute("data-transfer-count", response.POPUP.TRANSFER[nominal]);
+                        });
+                    }
+                    let transferAmount = popup.querySelector(".transfer-total")
+                    if(transferAmount !== null){
+                        transferAmount.setAttribute("data-transfer-amount", response.POPUP.AMOUNT ?? 0);
+                    }
+                    popup.classList.add("active");
+                    setTimeout(() => {
+                        popup.classList.add("visible");
+                    });
+                }
+            }
         }
 
         if(response.STATUS === "ERROR"){}
