@@ -22,7 +22,7 @@ class ATM
     );
     public function __construct($sTemplate = "default")
     {
-        if($_REQUEST["IS_AJAX"] === "Y"){
+        if(isset($_REQUEST["IS_AJAX"]) && $_REQUEST["IS_AJAX"] === "Y"){
             if($_REQUEST["INSTANCE"] === "ATM"){
                 $arResponse = array(
                     "STATUS" => "OK",
@@ -116,7 +116,12 @@ class ATM
                                     $arResponse["STEP"] = "WITHDRAWAL";
                                 }else{
                                     $iAmountTemp = $iAmount;
-                                    function calcMoney(&$arBanknotes, &$amount){
+                                    $arResponse["POPUP"] = array(
+                                        "TYPE" => "WITHDRAWAL",
+                                        "TRANSFER" => array(),
+                                        "AMOUNT" => 0
+                                    );
+                                    function calcMoney(&$arBanknotes, &$amount, &$arResponse){
                                         $arNominals = array(5000, 2000, 1000, 500, 200, 100);
                                         foreach($arNominals as $nominal){
                                             $iBillsCount = (int)$arBanknotes[$nominal];
@@ -124,14 +129,19 @@ class ATM
                                             $iBills = min($iBillsNeed, $iBillsCount);
                                             $arBanknotes[$nominal] -= $iBills;
                                             $amount -= $nominal * $iBills;
+                                            $arResponse["POPUP"]["TRANSFER"][$nominal] = $iBills;
                                         }
                                     }
-                                    calcMoney($arAtm["BANKNOTES"], $iAmountTemp);
+                                    calcMoney($arAtm["BANKNOTES"], $iAmountTemp, $arResponse);
                                     if($iAmountTemp > 0){
-                                        $arResponse["ALERT"] = "В банкомате закончились деньги, снято со счёта: " . $iAmount - $iAmountTemp;
-                                        $arUserData["DATA"]["MONEY"]["BALANCE"] -= $iAmount - $iAmountTemp;
+                                        $iAmountValueTemp = $iAmount - $iAmountTemp;
+                                        $arResponse["ALERT"] = "В банкомате закончились деньги, снято со счёта: " . $iAmountValueTemp;
+                                        $arUserData["DATA"]["MONEY"]["BALANCE"] -= $iAmountValueTemp;
+                                        $arResponse["POPUP"]["AMOUNT"] = $iAmountValueTemp;
+                                        unset($iAmountValueTemp);
                                     }else{
                                         $arUserData["DATA"]["MONEY"]["BALANCE"] -= $iAmount;
+                                        $arResponse["POPUP"]["AMOUNT"] = $iAmount;
                                     }
                                     $oUser->update($arUserData["DATA"]["ID"], $arUserData["DATA"]["CODE"], $arUserData["DATA"]);
                                     $arResponse["CONSOLE"]["REMAINS"] = $arAtm["BANKNOTES"];
