@@ -50,7 +50,7 @@ $CORE->addCss("{$sTemplateCatalogPath}/popup/popup.css");
             </button>
             <div class="errors"></div>
         </div>
-        <div class="atm-manager__settings<?=$_REQUEST["test"] === "y" ? " active visible" : ""?>">
+        <div class="atm-manager__settings<?php // =$_REQUEST["test"] === "y" ? " active visible" : ""?>">
             <div class="atm-manager__settings--background js-settings-toggle"></div>
             <div class="atm-manager__settings--body">
                 <div class="atm-manager__settings--controls">

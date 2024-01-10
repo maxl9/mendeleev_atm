@@ -22,7 +22,7 @@ class ATM
     );
     public function __construct($sTemplate = "default")
     {
-        if($_REQUEST["IS_AJAX"] === "Y"){
+        if(isset($_REQUEST["IS_AJAX"]) && $_REQUEST["IS_AJAX"] === "Y"){
             if($_REQUEST["INSTANCE"] === "ATM"){
                 $arResponse = array(
                     "STATUS" => "OK",
@@ -134,9 +134,11 @@ class ATM
                                     }
                                     calcMoney($arAtm["BANKNOTES"], $iAmountTemp, $arResponse);
                                     if($iAmountTemp > 0){
-                                        $arResponse["ALERT"] = "В банкомате закончились деньги, снято со счёта: " . $iAmount - $iAmountTemp;
-                                        $arUserData["DATA"]["MONEY"]["BALANCE"] -= $iAmount - $iAmountTemp;
-                                        $arResponse["POPUP"]["AMOUNT"] = $iAmount - $iAmountTemp;
+                                        $iAmountValueTemp = $iAmount - $iAmountTemp;
+                                        $arResponse["ALERT"] = "В банкомате закончились деньги, снято со счёта: " . $iAmountValueTemp;
+                                        $arUserData["DATA"]["MONEY"]["BALANCE"] -= $iAmountValueTemp;
+                                        $arResponse["POPUP"]["AMOUNT"] = $iAmountValueTemp;
+                                        unset($iAmountValueTemp);
                                     }else{
                                         $arUserData["DATA"]["MONEY"]["BALANCE"] -= $iAmount;
                                         $arResponse["POPUP"]["AMOUNT"] = $iAmount;

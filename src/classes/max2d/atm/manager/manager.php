@@ -13,7 +13,7 @@ class Manager
     public function __construct($sTemplate = "default")
     {
         global $ATM;
-        if($_REQUEST["IS_AJAX"] === "Y"){
+        if(isset($_REQUEST["IS_AJAX"]) && $_REQUEST["IS_AJAX"] === "Y"){
             if($_REQUEST["INSTANCE"] === "MANAGER"){
                 if($_REQUEST["ACTION"] === "CHANGE_ACTIVITY" && !empty($_REQUEST["ID"])){
                     $arConfig = isset($_COOKIE["ATM"]) ? json_decode($_COOKIE["ATM"], true) : array();
@@ -26,7 +26,7 @@ class Manager
             }
         }else{
             // Сброс конфигурации банкомата
-            if($_REQUEST["INSTANCE"] === "ATM" && $_REQUEST["ACTION"] === "RESET" && $_REQUEST["CODE"] === self::$sServiceCode){
+            if(isset($_REQUEST["INSTANCE"]) && $_REQUEST["INSTANCE"] === "ATM" && $_REQUEST["ACTION"] === "RESET" && $_REQUEST["CODE"] === self::$sServiceCode){
                 if(!empty($_REQUEST["ID"])) $ATM->reset($_REQUEST["ID"]);
             }
             $this->sTemplateName = $sTemplate;

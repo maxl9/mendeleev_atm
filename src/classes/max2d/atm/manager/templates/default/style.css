@@ -80,9 +80,10 @@
 }
 .transfer-container img {
     width: auto;
-    max-width: 100px;
+    max-width: 88px;
     height: 100%;
-
+    max-height: 44px;
+    aspect-ratio: 16 / 8;
 }
 .transfer-container [data-transfer-count]:after {
     content: attr(data-transfer-count);
